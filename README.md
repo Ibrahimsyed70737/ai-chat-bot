@@ -1,41 +1,119 @@
-AI Chat PortalWelcome to the AI Chat Portal! This is a simple web application built with Flask that allows users to interact with an AI chatbot, search Google, and get weather information. It includes a user authentication system with login and signup pages, and persists chat histories using MongoDB.✨ FeaturesUser Authentication: Secure login and signup functionalities.Persistent Chat History: Your conversations are saved and loaded from MongoDB.AI Chatbot: Interact with Google's Gemini 1.5 Flash model.Weather Tool: Get current weather for any city.Google Search Tool: Quickly perform Google searches directly from the chat.Responsive Design: Adapts to different screen sizes.Radical Dark Theme: A sleek, cyberpunk-inspired user interface.🚀 Technologies UsedBackend: Python (Flask)Database: MongoDBAI Model: Google Gemini 1.5 FlashExternal APIs: OpenWeatherMap API, Google Search (simulated via URL)Frontend: HTML, CSS, JavaScript (Fetch API)Security: werkzeug.security for password hashing, python-dotenv for environment variable management.📋 PrerequisitesBefore you begin, ensure you have the following installed on your system:Python 3.8+: You can download it from python.org.Git: For cloning the repository. Download from git-scm.com.MongoDB:Local Installation: Download and install MongoDB Community Server from mongodb.com.MongoDB Atlas (Cloud): Recommended for easier setup and deployment. Create a free cluster at cloud.mongodb.com.API Keys:Google Gemini API Key: Obtain one from Google AI Studio.OpenWeatherMap API Key: Register and get your key from openweathermap.org.💻 Getting StartedFollow these steps to get the project up and running on your local machine.1. Clone the RepositoryOpen your terminal or command prompt and clone the project:git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
-cd YOUR_REPO_NAME # Replace YOUR_REPO_NAME with the actual repository name you chose
-2. Set Up a Python Virtual EnvironmentIt's good practice to use a virtual environment to manage project dependencies.python -m venv venv
-3. Activate the Virtual EnvironmentOn macOS/Linux:source venv/bin/activate
-On Windows (Command Prompt):venv\Scripts\activate.bat
-On Windows (PowerShell):.\venv\Scripts\Activate.ps1
-4. Create and Configure the .env FileThis file stores your sensitive API keys and database connection strings securely.Create a new file named .env in the root of your project directory (at the same level as app.py).Add the following content to .env, replacing the placeholder values with your actual keys and connection string:# .env
+# AI Image Generator
 
-# Flask Secret Key (Generate a strong, random key, e.g., using python -c "import os; print(os.urandom(24).hex())")
-FLASK_SECRET_KEY='your_strong_random_flask_secret_key_here'
+This is a simple React application that allows users to generate images from text prompts using the Hugging Face Inference API. It provides a user-friendly interface to input a prompt, select the number of images, and choose an aspect ratio.
 
-# Google Gemini API Key
-GEMINI_API_KEY='YOUR_GOOGLE_GEMINI_API_KEY_HERE'
+## ✨ Features
 
-# OpenWeatherMap API Key
-OPENWEATHER_API_KEY='YOUR_OPENWEATHERMAP_API_KEY_HERE'
+* **Text-to-Image Generation:** Convert textual descriptions into stunning images.
+* **Multiple Image Output:** Generate up to 4 images per prompt.
+* **Aspect Ratio Selection:** Choose between Square (1:1), Landscape (16:9), and Portrait (9:16) aspect ratios.
+* **Dark Mode Toggle:** Switch between light and dark themes for a personalized viewing experience.
+* **Random Prompt Suggestion:** Get inspiration with a click of a button.
+* **Image Download:** Easily download generated images to your device.
 
-# MongoDB Connection URI
-# For local MongoDB: MONGO_URI="mongodb://localhost:27017/"
-# For MongoDB Atlas (Cloud): MONGO_URI="mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/?retryWrites=true&w=majority"
-MONGO_URI="mongodb://localhost:27017/"
-Important: Make sure your .gitignore file contains the line .env so this file is not committed to GitHub.5. Install Python DependenciesWith your virtual environment activated, install all required libraries:pip install Flask requests google-generativeai pymongo werkzeug python-dotenv
-6. Run the Flask ApplicationFrom your project's root directory (where app.py is), run the Flask development server:python app.py
-You should see output similar to this: * Debug mode: on
- * Running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/) (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: XXX-XXX-XXX
-7. Access the ApplicationOpen your web browser and navigate to:[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-You will be greeted by the AI Chat Portal landing page.🚀 UsageLanding Page (/):Click "LOGIN" to go to the login page.Click "SIGNUP" to create a new account.Click "GO TO CHAT" to directly access the chat if you're already logged in (otherwise, it will redirect you to login).Signup (/signup):Enter your email, desired username, and password.Click "REGISTER ACCOUNT". If successful, you'll be redirected to the login page.Login (/login):Enter your registered username and password.Click "INITIATE LOGIN". On successful login, you'll be redirected to the chat page.Chat Page (/chat):Sidebar: You'll see a list of your existing chat sessions. Click on a session to load its history.+ NEW CHAT button: Start a fresh conversation.Input Field: Type your message or query.Action Dropdown: Select the desired action:ASK AI: Sends your message to the Google Gemini chatbot.GET WEATHER: Type a city name (e.g., "London", "New York") to get its current weather.SEARCH GOOGLE: Type your search query to get a clickable Google search link.SEND button: Send your message.Logout Button: At the bottom of the sidebar, click "LOGOUT" to end your session.📂 Directory Structuremy_chat_app/
-├── app.py                 # Main Flask application logic
-├── .env                   # Environment variables (API keys, secret key, DB URI) - IMPORTANT: NOT pushed to Git!
-├── .gitignore             # Tells Git which files/folders to ignore (like .env, venv)
-├── README.md              # This file
-└── templates/             # Flask's default directory for HTML templates and static files
-    ├── index.html         # Landing page with Login/Signup/Chat buttons
-    ├── chat.html          # The main AI chat interface
-    ├── login.html         # User login page
-    ├── signup.html        # User registration page
-    └── style.css          # Unified CSS styling for all HTML pages
-🔒 Important NotesSecurity of API Keys: Never share your .env file or commit it to version control (like GitHub). The .gitignore file is configured to prevent this.Flask Secret Key: For a production environment, ensure FLASK_SECRET_KEY in your .env is a very long, random, and complex string.MongoDB Connection: Verify your MONGO_URI is correct and your MongoDB instance is running before starting the Flask app.Debugging: app.run(debug=True) is used for development. For production deployment, you should use a production-ready WSGI server like Gunicorn or uWSGI.
+## 🚀 Getting Started (For Beginners)
+
+Follow these steps to get the project up and running on your local machine.
+
+### 📋 Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+* **Node.js & npm (or Yarn):** This is required to run the React application.
+    * Download from: [https://nodejs.org/](https://nodejs.org/) (Node.js comes with npm).
+    * Verify installation: Open your terminal or command prompt and type:
+        ```bash
+        node -v
+        npm -v
+        ```
+        (If you prefer Yarn, you can install it via `npm install -g yarn` and verify with `yarn -v`)
+* **Git:** This is used for cloning the repository.
+    * Download from: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+    * Verify installation: Open your terminal or command prompt and type:
+        ```bash
+        git --version
+        ```
+* **Hugging Face Account & API Token:** You'll need a Hugging Face account and an API token to use their inference API for image generation.
+    * Sign up/Login: [https://huggingface.co/](https://huggingface.co/)
+    * **Get your API Token:**
+        1.  Log in to your Hugging Face account.
+        2.  Click on your **profile picture** (top right corner).
+        3.  Select **"Access Tokens"**.
+        4.  Click **"New token"**.
+        5.  Give it a **Name** (e.g., `ImageGeneratorApp`).
+        6.  For **"Role"**, select **"read"**.
+        7.  Click **"Generate a token"**.
+        8.  **IMPORTANT:** Copy the token immediately! You won't see it again. It usually starts with `hf_`.
+
+### 📦 Installation
+
+1.  **Clone the Repository:**
+    Open your terminal or command prompt and run the following command to clone the project to your local machine:
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git)
+    # Replace YOUR_USERNAME and YOUR_REPOSITORY_NAME with your actual GitHub username and repository name
+    # For example: git clone [https://github.com/syedibrahim123/my-ai-image-generator.git](https://github.com/syedibrahim123/my-ai-image-generator.git)
+    ```
+2.  **Navigate to the Project Directory:**
+    Change your current directory to the newly cloned project folder:
+    ```bash
+    cd YOUR_REPOSITORY_NAME
+    # For example: cd my-ai-image-generator
+    ```
+3.  **Install Dependencies:**
+    Install all the necessary Node.js packages:
+    ```bash
+    npm install
+    # or if you use Yarn:
+    # yarn install
+    ```
+4.  **Set up your Environment Variable (.env file):**
+    This step is crucial for securely storing your Hugging Face API token.
+    * In the root directory of your project (the `YOUR_REPOSITORY_NAME` folder), create a new file named exactly: `.env`
+    * Open the `.env` file with a text editor (like Notepad, VS Code, Sublime Text, etc.) and add the following line. **Make sure to replace `YOUR_HUGGING_FACE_API_TOKEN` with the actual token you copied from Hugging Face.**
+        ```
+        REACT_APP_HUGGING_FACE_API_TOKEN=YOUR_HUGGING_FACE_API_TOKEN
+        ```
+        **Important:**
+        * There should be no spaces around the `=` sign.
+        * **Do NOT** commit this `.env` file to your GitHub repository. It's already listed in the `.gitignore` file to prevent accidental uploads.
+
+### 🏃 Running the Application
+
+After completing the installation and API key setup, you can run the application:
+
+1.  **Start the Development Server:**
+    In your terminal (still in the project root directory), run:
+    ```bash
+    npm start
+    # or if you use Yarn:
+    # yarn start
+    ```
+2.  **Open in Browser:**
+    Your browser should automatically open a new tab at `http://localhost:3000` (or another port if 3000 is in use). If not, open your browser and go to that address manually.
+
+You should now see the AI Image Generator interface.
+
+## ⚠️ Troubleshooting Common Issues
+
+* **"Authentication/Permission error (Status: 403)"**:
+    * **Invalid Token:** Your Hugging Face API token is incorrect or expired. Go back to HuggingFace.co -> Access Tokens, create a new token, copy it carefully, and update your `.env` file. Remember to save the `.env` file.
+    * **Incorrect Permissions:** Ensure your Hugging Face API token has at least the **"Make calls to Inference Providers"** permission enabled under the "Inference" section.
+    * **Server Restart:** After updating your `.env` file, you **must restart your development server** (Ctrl+C in the terminal, then `npm start` again) for the changes to take effect.
+
+* **"Model loading error (Status: 503)"**:
+    * The Hugging Face model might be busy loading or experiencing high traffic. Wait a few moments and try generating again. Sometimes, the first request to a model can take longer as it "warms up".
+
+* **"Rate limit exceeded (Status: 429)"**:
+    * You've sent too many requests in a short period. Hugging Face's free tier has rate limits. Wait for a few minutes and try again. For higher usage, consider their paid plans.
+
+* **"Error: Hugging Face API token is not configured"**:
+    * This means `process.env.REACT_APP_HUGGING_FACE_API_TOKEN` is `undefined` or an empty string. Double-check that you created the `.env` file correctly in the project root, that the variable name is exactly `REACT_APP_HUGGING_FACE_API_TOKEN`, and that you've restarted your development server.
+
+## 🤝 Contributing
+
+If you'd like to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request.
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
