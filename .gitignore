@@ -1,0 +1,28 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Python compiled files
+__pycache__/
+*.pyc
+
+# Flask specific
+instance/
+.flaskenv
+
+# Environment variables and sensitive data
+.env
+*.env
+*.ini
+*.secret
+api_keys.txt # If you put your API keys in a separate file
+app.secret_key # If your secret key is in a separate file (though it's currently in app.py)
+
+# Specific to your app.py
+# If you want to keep the API key and secret key out of the pushed app.py:
+# Temporarily comment out these lines in app.py for now:
+# genai.configure(api_key="AIzaSyAPY6RgantTwOcSYO79gCH5G_-EB4q-fG4")
+# app.secret_key = 'your_secret_key'
+# And instead, read them from environment variables or a .env file,
+# which are ignored by .gitignore. For this quick push, just remember the warning.

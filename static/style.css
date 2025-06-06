@@ -1,0 +1,580 @@
+/* Importing fonts from the original resume CSS */
+@import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&family=sans-serif:wght@400;700&display=swap');
+
+/* Redefining root variables to match the resume analyzer's theme */
+:root {
+    --light-bg: #e0f2f7; /* Light blue from resume app-container */
+    --light-green-bg: #c5e1a5; /* Light green from resume app-container */
+    --card-bg-light: #fff; /* White from resume main-card */
+    --section-bg-light: #f3e5f5; /* Light purple from resume section */
+    --main-purple: #4a148c; /* Deep purple from resume title */
+    --darker-purple: #6a1b9a; /* Darker purple from resume section-title */
+    --medium-purple: #ce93d8; /* Medium purple from resume section border */
+    --text-dark: #333; /* Dark text from resume app-container */
+    --text-medium: #555; /* Medium text from resume file-list */
+    --border-light: #ddd; /* Light border from resume main-card */
+    --error-bg: #ffe0b2; /* Light orange from resume error-message */
+    --error-border: #ff9800; /* Orange from resume error-message */
+    --error-text: #e65100; /* Dark orange from resume error-message */
+    --match-bg: #e8f5e9; /* Light green from resume result-item.match */
+    --match-border: #81c784; /* Medium green from resume result-item.match */
+    --match-badge-bg: #4caf50; /* Green from resume score-badge.match */
+    --no-match-bg: #ffebee; /* Light red from resume result-item.no-match */
+    --no-match-border: #e57373; /* Medium red from resume result-item.no-match */
+    --no-match-badge-bg: #f44336; /* Red from resume score-badge.no-match */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Changed font to Arial */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, var(--light-bg), var(--light-green-bg)); /* Light blue to light green gradient */
+    color: var(--text-dark); /* Dark text color */
+    overflow: hidden; /* Keep for potential background elements if added */
+    position: relative;
+    padding: 20px; /* Padding for the body */
+}
+
+/* Background Grid & Shapes (removed as they are part of the cyberpunk theme, not the plain resume theme) */
+/* If you wish to re-introduce subtle background patterns, they would need to be designed for the new theme. */
+
+/* --- Login/Signup Specific Styles --- */
+.login-container {
+    position: relative;
+    z-index: 1;
+    /* animation: container-fade-in 1.5s ease-out forwards; */ /* Removed cyberpunk animation */
+    /* opacity: 0; */ /* Removed cyberpunk animation */
+    /* transform: translateY(20px); */ /* Removed cyberpunk animation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Take full height to center content */
+}
+
+/* @keyframes container-fade-in { ... } */ /* Removed */
+
+.login-box {
+    max-width: 900px; /* From resume main-card */
+    margin: 40px auto; /* From resume main-card */
+    background-color: var(--card-bg-light); /* White from resume main-card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* From resume main-card */
+    border-radius: 12px; /* From resume main-card */
+    padding: 30px 50px; /* From resume main-card */
+    border: 1px solid var(--border-light); /* From resume main-card */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1; /* Ensure it's above background */
+}
+
+/* .login-box::before { ... } */ /* Removed cyberpunk border glow */
+/* @keyframes border-glow { ... } */ /* Removed */
+
+.login-title {
+    font-family: Arial, sans-serif; /* Changed font */
+    color: var(--main-purple); /* Deep purple from resume title */
+    margin-bottom: 40px; /* From resume title */
+    font-size: 2.5em; /* From resume title */
+    font-weight: bold; /* From resume title */
+    text-align: center; /* From resume title */
+    /* text-shadow: var(--glow-strength); */ /* Removed cyberpunk glow */
+    letter-spacing: normal; /* Reset letter spacing */
+}
+
+.input-group {
+    margin-bottom: 30px; /* From resume section */
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 15px; /* From resume section-title */
+    color: var(--darker-purple); /* Darker purple from resume section-title */
+    font-size: 1.2em; /* From resume section-title */
+    font-weight: bold; /* From resume section-title */
+    text-transform: none; /* Reset text transform */
+    letter-spacing: normal; /* Reset letter spacing */
+}
+
+.input-group input,
+.input-group textarea { /* Added textarea for consistency */
+    width: 100%; /* From resume textarea */
+    padding: 12px; /* From resume textarea */
+    background: var(--card-bg-light); /* White from resume input */
+    border: 1px solid #ccc; /* From resume textarea */
+    border-radius: 8px; /* From resume textarea */
+    color: var(--text-dark); /* Dark text color */
+    font-size: 1em; /* From resume textarea */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s; /* From resume textarea */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* From resume textarea */
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #999; /* Lighter placeholder color */
+    opacity: 1;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #8e24aa; /* Purple from resume textarea:focus */
+    box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.2); /* From resume textarea:focus */
+    background: var(--card-bg-light); /* Keep background consistent on focus */
+}
+
+.login-button {
+    width: 100%; /* From resume analyze-button */
+    padding: 15px 30px; /* From resume analyze-button */
+    background-color: #673ab7; /* Deep purple from resume analyze-button */
+    color: white; /* From resume analyze-button */
+    border: none; /* From resume analyze-button */
+    border-radius: 30px; /* From resume analyze-button */
+    font-size: 1.2em; /* From resume analyze-button */
+    font-weight: bold; /* From resume analyze-button */
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* From resume analyze-button */
+    text-transform: none; /* Reset text transform */
+    letter-spacing: normal; /* Reset letter spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* From resume analyze-button */
+    position: relative;
+    overflow: hidden;
+}
+
+/* .login-button::before { ... } */ /* Removed cyberpunk shimmer */
+
+.login-button:hover {
+    background-color: #512da8; /* Even deeper purple from resume analyze-button:hover */
+    transform: translateY(-2px); /* From resume analyze-button:hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* From resume analyze-button:hover */
+}
+
+.login-button:disabled {
+    background-color: #b39ddb; /* Lighter purple from resume analyze-button:disabled */
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+    box-shadow: none;
+}
+
+.options-group {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: var(--text-dark); /* Changed to dark text */
+}
+
+.options-group a {
+    color: var(--main-purple); /* Deep purple */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.options-group a:hover {
+    color: var(--darker-purple); /* Darker purple */
+    text-decoration: underline;
+}
+
+.options-group .separator {
+    margin: 0 10px;
+}
+
+.social-login {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Light border */
+}
+
+.social-login p {
+    color: var(--text-medium); /* Medium text */
+    margin-bottom: 15px;
+    text-transform: none; /* Reset text transform */
+    font-size: 0.9em;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f0f0f0; /* Light background */
+    color: var(--main-purple); /* Deep purple */
+    font-family: Arial, sans-serif; /* Changed font */
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #ccc; /* Light border */
+}
+
+.social-icons .icon:hover {
+    transform: scale(1.1); /* Simple scale, no rotation */
+    background: var(--main-purple); /* Deep purple background */
+    color: #fff;
+    border-color: var(--main-purple);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+}
+
+/* --- Chat Specific Styles --- */
+.chat-wrapper {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    background: var(--card-bg-light); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* From resume main-card */
+    border: 1px solid var(--border-light); /* From resume main-card */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: auto;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--card-bg-light); /* White background */
+    color: var(--text-dark); /* Dark text */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-right: 1px solid var(--border-light); /* Light border */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-family: Arial, sans-serif; /* Changed font */
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    color: var(--main-purple); /* Deep purple */
+    text-shadow: none; /* Removed glow */
+    letter-spacing: normal; /* Reset letter spacing */
+    text-align: center;
+}
+
+.sidebar .new-chat-button {
+    background: #673ab7; /* Deep purple */
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-transform: none; /* Reset uppercase */
+    letter-spacing: normal; /* Reset letter spacing */
+}
+
+.sidebar .new-chat-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #512da8; /* Darker purple */
+}
+
+.sidebar .chat-link {
+    color: var(--text-medium); /* Medium text */
+    text-decoration: none;
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar .chat-link.active, .sidebar .chat-link:hover {
+    background-color: #f3e5f5; /* Light purple from section */
+    color: var(--main-purple); /* Deep purple */
+    border-left-color: var(--main-purple); /* Deep purple */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Light border */
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-medium); /* Medium text */
+}
+
+.sidebar-footer p {
+    margin-bottom: 10px;
+}
+
+.sidebar-footer .logout-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #673ab7; /* Deep purple */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-transform: none; /* Reset uppercase */
+    font-size: 0.9em;
+}
+
+.sidebar-footer .logout-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #512da8; /* Darker purple */
+}
+
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg-light); /* White background */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg-light); /* White background */
+    padding: 15px 25px;
+    color: var(--main-purple); /* Deep purple */
+    border-bottom: 1px solid var(--border-light); /* Light border */
+    font-family: Arial, sans-serif; /* Changed font */
+    font-size: 1.3em;
+    text-shadow: none; /* Removed glow */
+    letter-spacing: normal; /* Reset letter spacing */
+    font-weight: bold; /* Added font weight for title look */
+}
+
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f9f9f9; /* Slightly off-white for message area */
+}
+
+.message {
+    margin: 10px 0;
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 0.95em;
+}
+
+.user {
+    background-color: #e0f2f7; /* Light blue */
+    align-self: flex-end;
+    border: 1px solid #a7d9f2; /* Lighter blue border */
+    color: var(--text-dark);
+    border-bottom-right-radius: 10px; /* Rounded corners */
+}
+
+.bot {
+    background-color: #f3e5f5; /* Light purple */
+    align-self: flex-start;
+    border: 1px solid #ce93d8; /* Medium purple border */
+    color: var(--text-dark);
+    border-bottom-left-radius: 10px; /* Rounded corners */
+}
+
+.bot.loading {
+    font-style: italic;
+    color: var(--text-medium);
+    animation: none; /* Removed pulse animation */
+}
+
+/* @keyframes pulse-text { ... } */ /* Removed */
+
+.bot.error {
+    background-color: var(--error-bg);
+    border-color: var(--error-border);
+    color: var(--error-text);
+}
+
+.input-form {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border-light); /* Light border */
+    background: var(--card-bg-light); /* White background */
+    gap: 10px;
+}
+
+.input-form input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    font-size: 1em;
+    background: var(--card-bg-light); /* White background */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 8px;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.input-form input[type="text"]:focus {
+    border-color: #8e24aa; /* Purple */
+    box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.2);
+    background: var(--card-bg-light); /* Keep background consistent on focus */
+}
+
+.input-form select, .input-form button {
+    padding: 12px 18px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #673ab7; /* Deep purple */
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-transform: none; /* Reset uppercase */
+}
+
+.input-form select:hover, .input-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #512da8; /* Darker purple */
+}
+
+/* Flash Messages Styling */
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.flash-messages li {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash-messages .success {
+    background-color: var(--match-bg);
+    border: 1px solid var(--match-border);
+    color: var(--match-badge-bg);
+}
+
+.flash-messages .error {
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+}
+
+.flash-messages .warning {
+    background-color: #fff9c4; /* Light yellow */
+    border: 1px solid #ffeb3b; /* Yellow */
+    color: #fbc02d; /* Dark yellow */
+}
+
+.flash-messages .info {
+    background-color: #e3f2fd; /* Light blue */
+    border: 1px solid #90caf9; /* Blue */
+    color: #2196f3; /* Dark blue */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chat-wrapper {
+        flex-direction: column;
+        height: 95vh;
+        width: 95%;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 10px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar .new-chat-button, .sidebar .chat-link {
+        margin-bottom: 5px;
+    }
+
+    .input-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .input-form select, .input-form button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .login-box {
+        width: 90%;
+        padding: 30px 20px;
+    }
+    .login-title {
+        font-size: 2em;
+    }
+    .login-button {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+    .section { /* Applied to general sections like input-group */
+        padding: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .login-box {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 2em;
+    }
+
+    .social-icons .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        width: 95%;
+        padding: 20px 15px;
+    }
+    .login-title {
+        font-size: 1.8em;
+    }
+    .login-button {
+        width: 100%;
+        padding: 10px;
+    }
+    /* Assuming result-header and score-badge are not directly in chat, but if they were, they'd adapt */
+}

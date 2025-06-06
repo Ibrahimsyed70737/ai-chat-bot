@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <div class="login-container"> <div class="login-box"> <h2 class="login-title">CREATE ACCOUNT</h2>
+            <form action="/signup" method="post"> {# Added action and method for form submission #}
+                <div class="input-group">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="new-username">USERNAME</label>
+                    <input type="text" id="new-username" name="username" placeholder="Choose a username" required> {# Changed name to 'username' for consistency with login #}
+                </div>
+                <div class="input-group">
+                    <label for="new-password">PASSWORD</label>
+                    <input type="password" id="new-password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">CONFIRM PASSWORD</label>
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter password" required> {# Changed name to 'confirm_password' #}
+                </div>
+                <button type="submit" class="login-button">REGISTER ACCOUNT</button>
+            </form>
+            <div class="options-group">
+                Already have an account? <a href="/login" class="signup-link">LOGIN HERE</a>
+            </div>
+            <div class="social-login">
+                <p>OR REGISTER VIA:</p>
+                <div class="social-icons">
+                    <a href="#" class="icon facebook">FB</a>
+                    <a href="#" class="icon twitter">TW</a>
+                    <a href="#" class="icon google">G+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

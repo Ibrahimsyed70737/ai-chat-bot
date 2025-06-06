@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <div class="chat-wrapper">
+        <div class="sidebar">
+            <h2>CHATS</h2>
+            <a href="{{ url_for('chat_page', new='1') }}" class="new-chat-button">+ NEW CHAT</a>
+            {% for sid, data in sessions.items() %}
+                <a href="{{ url_for('chat_page', session=sid) }}" class="chat-link {% if current == sid %}active{% endif %}">
+                    {{ data.title }}
+                </a>
+            {% endfor %}
+            <div class="sidebar-footer">
+                {% if username %}
+                    <p>Logged in as: <strong>{{ username }}</strong></p>
+                    <a href="{{ url_for('logout') }}" class="logout-button">LOGOUT</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div class="top-bar">
+                <div>AI CHAT TERMINAL</div>
+            </div>
+
+            <div class="messages" id="chatBox">
+                {# Display flash messages #}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flash-messages">
+                            {% for category, message in messages %}
+                                <li class="{{ category }}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+
+                {% for msg_data in sessions[current]["messages"] %}
+                    <div class="message {{ msg_data.sender }}">
+                        {{ msg_data.message|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form class="input-form" method="post" onsubmit="sendMessage(event)">
+                <input type="text" id="command" name="command" placeholder="ASK ME ANYTHING..." autocomplete="off" />
+                <select name="action" id="action">
+                    <option value="ask_ai">ASK AI</option>
+                    <option value="get_weather">GET WEATHER</option>
+                    <option value="search_google">SEARCH GOOGLE</option>
+                </select>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to scroll to the bottom of the chat box
+        function scrollToBottom() {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Call scroll to bottom on page load to show latest messages
+        document.addEventListener('DOMContentLoaded', scrollToBottom);
+
+
+        function sendMessage(event) {
+            event.preventDefault();
+            const commandInput = document.getElementById("command");
+            const actionSelect = document.getElementById("action");
+
+            const commandValue = commandInput.value.trim();
+            const actionValue = actionSelect.value;
+
+            if (commandValue === "") return;
+
+            const chatBox = document.getElementById("chatBox");
+
+            // Add user message immediately to the UI
+            chatBox.innerHTML += `<div class="message user">${commandValue}</div>`;
+            commandInput.value = ""; // Clear input field
+            scrollToBottom(); // Scroll to show new message
+
+            // Show a temporary loading indicator for bot response
+            const loadingMessage = document.createElement('div');
+            loadingMessage.className = 'message bot loading';
+            loadingMessage.innerHTML = 'Thinking...'; // Or a spinner/animation
+            chatBox.appendChild(loadingMessage);
+            scrollToBottom();
+
+            // Corrected fetch URL to /send_message
+            fetch("/send_message", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `command=${encodeURIComponent(commandValue)}&action=${actionValue}`
+            })
+            .then(res => {
+                // Remove loading indicator regardless of success or failure
+                if (chatBox.contains(loadingMessage)) {
+                    chatBox.removeChild(loadingMessage);
+                }
+                if (res.status === 401) { // Unauthorized, means not logged in
+                    window.location.href = "{{ url_for('login_page') }}"; // Redirect to login
+                    return Promise.reject('Unauthorized');
+                }
+                return res.json();
+            })
+            .then(data => {
+                // Add bot response to the UI
+                chatBox.innerHTML += `<div class="message bot">${data.response}</div>`;
+                scrollToBottom();
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+                // Remove loading message
+                if (loadingMessage.parentNode) {
+                    loadingMessage.parentNode.removeChild(loadingMessage);
+                }
+                // Display an error message to the user
+                chatBox.innerHTML += `<div class="message bot error">Error: Could not get response. Please try again or log in.</div>`;
+                scrollToBottom();
+            });
+        }
+    </script>
+</body>
+</html>

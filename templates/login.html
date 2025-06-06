@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h2 class="login-title">ACCESS TERMINAL</h2>
+            <form action="/login" method="post"> {# Added action and method for form submission #}
+                <div class="input-group">
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-button">INITIATE LOGIN</button>
+            </form>
+            <div class="options-group">
+                <a href="#" class="forgot-password">FORGOT PASSWORD?</a>
+                <span class="separator">|</span>
+                <a href="/signup" class="signup-link">CREATE ACCOUNT</a>
+            </div>
+            <div class="social-login">
+                <p>OR CONNECT VIA:</p>
+                <div class="social-icons">
+                    <a href="#" class="icon facebook">FB</a>
+                    <a href="#" class="icon twitter">TW</a>
+                    <a href="#" class="icon google">G+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <div class="portal-container">
+        <div class="portal-box">
+            <h1 class="portal-title">WELCOME TO THE AI CHAT PORTAL</h1>
+            <p class="portal-subtitle">Your gateway to advanced AI interactions.</p>
+            <div class="portal-buttons">
+                <a href="/login" class="portal-button login-btn">LOGIN</a>
+                <a href="/signup" class="portal-button signup-btn">SIGNUP</a>
+                <a href="/chat" class="portal-button chat-btn">GO TO CHAT</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
