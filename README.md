@@ -110,6 +110,25 @@ You should now see the AI Image Generator interface.
 * **"Error: Hugging Face API token is not configured"**:
     * This means `process.env.REACT_APP_HUGGING_FACE_API_TOKEN` is `undefined` or an empty string. Double-check that you created the `.env` file correctly in the project root, that the variable name is exactly `REACT_APP_HUGGING_FACE_API_TOKEN`, and that you've restarted your development server.
 
+## 📂 Directory Structure
+
+```
+my-ai-image-generator/
+├── public/                  # Static assets (HTML, favicon, etc.)
+│   ├── index.html
+│   └── ...
+├── src/                     # React application source code
+│   ├── App.js               # Main React component
+│   ├── index.js             # Entry point for React app
+│   └── ...                  # Other components or files
+├── .env                     # Environment variables (e.g., API keys) - NOT committed to Git!
+├── .gitignore               # Specifies files/folders to be ignored by Git
+├── package.json             # Project metadata and dependencies
+├── package-lock.json        # Records exact dependency versions
+├── README.md                # This file
+└── ...                      # Other potential config files (e.g., tsconfig.json if TypeScript)
+```
+
 ## 🤝 Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request.
