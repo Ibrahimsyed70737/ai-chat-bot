@@ -126,7 +126,7 @@ You should see output similar to this:
 
 Open your web browser and navigate to:
 
-[http://127.0.0.1:5000/](http://127.00.1:5000/)
+[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 You will be greeted by the AI Chat Portal landing page.
 
@@ -168,12 +168,15 @@ my_chat_app/
 ├── .env                   # Environment variables (API keys, secret key, DB URI) - IMPORTANT: NOT pushed to Git!
 ├── .gitignore             # Tells Git which files/folders to ignore (like .env, venv)
 ├── README.md              # This file
-└── templates/             # Flask's default directory for HTML templates and static files
-    ├── index.html         # Landing page with Login/Signup/Chat buttons
-    ├── chat.html          # The main AI chat interface
-    ├── login.html         # User login page
-    ├── signup.html        # User registration page
-    └── style.css          # Unified CSS styling for all HTML pages
+├── templates/             # Flask's default directory for HTML templates
+│   ├── index.html         # Landing page with Login/Signup/Chat buttons
+│   ├── chat.html          # The main AI chat interface
+│   ├── login.html         # User login page
+│   └── signup.html        # User registration page
+└── static/                # Directory for static files like CSS, JavaScript, images
+    ├── style.css          # Main CSS styling for the application
+    ├── style2.css         # An example of an additional stylesheet (you can add your own custom styles here)
+    └── ...                # Other static assets you might include
 ```
 
 ## 🔒 Important Notes
